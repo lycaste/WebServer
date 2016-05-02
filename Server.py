@@ -50,7 +50,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         except Exception as msg:
             self.handle_error(msg)
 
-        
+
     def create_page(self):
        values = {
            'date_time': self.date_time_string(),
@@ -59,7 +59,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
            'command': self.command,
            'path': self.path
        }
-       
+
        page = self.Page.format(**values)
        return page
 
@@ -74,7 +74,7 @@ class RequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             self.handle_error(msg)
 
     def handle_error(self, msg ):
-        content = self.Error_Page.format(self.path, msg)
+        content = self.Error_Page.format(path=self.path, msg=msg)
         self.send_content(content, 404)
 
     def send_content(self, content,status=200):
